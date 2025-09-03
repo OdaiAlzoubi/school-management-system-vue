@@ -72,19 +72,26 @@
                                                 <span class="fw-bold">{{ item.user.phone ?? '-' }}</span>
                                             </td>
                                             <td class="">
-                                                <span class="fw-bold">{{ item.nationality }}</span>
+                                                <span class="fw-bold">{{ item.nationality ?? '-' }}</span>
                                             </td>
                                             <td class="">
                                                 <span class="fw-bold">{{ item.user.gender }}</span>
                                             </td>
                                             <td class="">
-                                                <span class="fw-bold">{{ item.enrollment_status }}</span>
+                                                <div
+                                                    :class="`badge badge-light-${item.enrollment_status === 'active' ? 'success' : 'danger'}`">
+                                                    <span class="fw-bold">{{ item.enrollment_status }}</span>
+                                                </div>
                                             </td>
                                             <td class="">
                                                 <span class="fw-bold">{{ item.user.date_of_birth }}</span>
                                             </td>
                                             <td class="">
-                                                <span class="fw-bold">{{ item.user.is_active }}</span>
+                                                <div
+                                                    :class="`badge badge-light-${item.user.is_active ? 'success' : 'danger'}`">
+                                                    <span class="fw-bold">{{ item.user.is_active ? 'Active' :
+                                                        'Inactive' }}</span>
+                                                </div>
                                             </td>
                                             <td class="">
                                                 <span class="fw-bold">{{ item.user.address.country }}</span>
