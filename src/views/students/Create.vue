@@ -9,7 +9,6 @@
                             <span class="path1"></span>
                             <span class="path2"></span>
                         </i>
-                        <!-- &times; -->
                     </button>
                 </div>
 
@@ -25,19 +24,21 @@
                             <div class="d-flex col-md-4 flex-column mb-8">
                                 <label class="required fs-6 fw-semibold mb-2">First Name</label>
                                 <input v-model="form.first_name" type="text" class="form-control form-control-solid"
-                                    :class="{ 'is-invalid': errors.first_name }" placeholder="Enter First Name">
+                                    :class="{ 'is-invalid': errors.first_name }" placeholder="Enter First Name"
+                                    required>
                                 <Error v-if="errors.first_name" :message="getErrorMessage(errors.first_name)" />
                             </div>
-                            <div class="d-flex col-md-4 flex-column mb-8">
-                                <label class="fs-6 fw-semibold mb-2">Middle Name</label>
+                            <div class=" d-flex col-md-4 flex-column mb-8">
+                                <label class="required fs-6 fw-semibold mb-2">Middle Name</label>
                                 <input v-model="form.middle_name" type="text" class="form-control form-control-solid"
-                                    :class="{ 'is-invalid': errors.middle_name }" placeholder="Enter Middle Name">
+                                    :class="{ 'is-invalid': errors.middle_name }" placeholder="Enter Middle Name"
+                                    required>
                                 <Error v-if="errors.middle_name" :message="getErrorMessage(errors.middle_name)" />
                             </div>
                             <div class="d-flex col-md-4 flex-column mb-8">
-                                <label class="fs-6 fw-semibold mb-2">Last Name</label>
+                                <label class="required fs-6 fw-semibold mb-2">Last Name</label>
                                 <input v-model="form.last_name" type="text" class="form-control form-control-solid"
-                                    :class="{ 'is-invalid': errors.last_name }" placeholder="Enter Last Name">
+                                    :class="{ 'is-invalid': errors.last_name }" placeholder="Enter Last Name" required>
                                 <Error v-if="errors.last_name" :message="getErrorMessage(errors.last_name)" />
                             </div>
                         </div>
@@ -60,32 +61,35 @@
                         </div>
                         <!-- national_number -->
                         <div class="d-flex flex-column mb-8">
-                            <label class="fs-6 fw-semibold mb-2">National Number</label>
+                            <label class="required fs-6 fw-semibold mb-2">National Number</label>
                             <input v-model="form.national_number" type="number" class="form-control form-control-solid"
-                                :class="{ 'is-invalid': errors.national_number }" placeholder="Enter National Number">
+                                :class="{ 'is-invalid': errors.national_number }" placeholder="Enter National Number"
+                                required>
                             <Error v-if="errors.national_number" :message="getErrorMessage(errors.national_number)" />
                         </div>
                         <!-- address -->
                         <div class="row g-9 mb-8">
                             <div class="d-flex col-md-4 flex-column mb-8">
-                                <label class="fs-6 fw-semibold mb-2">country</label>
+                                <label class="required fs-6 fw-semibold mb-2">country</label>
                                 <input v-model="form.address.country" type="text"
                                     class="form-control form-control-solid"
-                                    :class="{ 'is-invalid': errors['address.country'] }" placeholder="Enter country">
+                                    :class="{ 'is-invalid': errors['address.country'] }" placeholder="Enter country"
+                                    required>
                                 <Error v-if="errors['address.country']"
                                     :message="getErrorMessage(errors['address.country'])" />
                             </div>
                             <div class="d-flex col-md-4 flex-column mb-8">
-                                <label class="fs-6 fw-semibold mb-2">city</label>
+                                <label class="required fs-6 fw-semibold mb-2">city</label>
                                 <input v-model="form.address.city" type="text" class="form-control form-control-solid"
-                                    :class="{ 'is-invalid': errors['address.city'] }" placeholder="Enter city">
+                                    :class="{ 'is-invalid': errors['address.city'] }" placeholder="Enter city" required>
                                 <Error v-if="errors['address.city']"
                                     :message="getErrorMessage(errors['address.city'])" />
                             </div>
                             <div class="d-flex col-md-4 flex-column mb-8">
-                                <label class="fs-6 fw-semibold mb-2">street</label>
+                                <label class="required fs-6 fw-semibold mb-2">street</label>
                                 <input v-model="form.address.street" type="text" class="form-control form-control-solid"
-                                    :class="{ 'is-invalid': errors['address.street'] }" placeholder="Enter street">
+                                    :class="{ 'is-invalid': errors['address.street'] }" placeholder="Enter street"
+                                    required>
                                 <Error v-if="errors['address.street']"
                                     :message="getErrorMessage(errors['address.street'])" />
                             </div>
@@ -107,7 +111,7 @@
                                 <input v-model="form.date_of_birth"
                                     class="form-control form-control-solid ps-12 flatpickr-input"
                                     :class="{ 'is-invalid': errors.date_of_birth }" placeholder="Select a date"
-                                    name="date_of_birth" type="date">
+                                    name="date_of_birth" type="date" required>
                                 <Error v-if="errors.date_of_birth" :message="getErrorMessage(errors.date_of_birth)" />
                             </div>
                         </div>
@@ -116,8 +120,8 @@
                             <label class="required fs-6 fw-semibold mb-2">Role</label>
                             <select class="form-select form-select-solid" v-model="form.role"
                                 :class="{ 'is-invalid': errors.role }" data-control="select2" data-hide-search="true"
-                                data-placeholder="Select a Team Member" name="role">
-                                <option value="student" selected>Student</option>
+                                name="role">
+                                <option value="student">Student</option>
                             </select>
                             <Error v-if="errors.role" :message="getErrorMessage(errors.role)" />
                         </div>
@@ -127,7 +131,7 @@
                                 <label class="required fs-6 fw-semibold mb-2">Is Active</label>
                                 <select class="form-select form-select-solid" v-model="form.is_active"
                                     :class="{ 'is-invalid': errors.is_active }" data-control="select2"
-                                    data-hide-search="true" data-placeholder="Select a Team Member" name="is_active">
+                                    data-hide-search="true" name="is_active" required>
                                     <option disabled value="">Select Is Active...</option>
                                     <option value="1">Active</option>
                                     <option value="0">InActive</option>
@@ -139,7 +143,7 @@
                                 <label class="required fs-6 fw-semibold mb-2">Gender</label>
                                 <select class="form-select form-select-solid" v-model="form.gender"
                                     :class="{ 'is-invalid': errors.gender }" data-control="select2"
-                                    data-hide-search="true" data-placeholder="Select a Team Member" name="gender">
+                                    data-hide-search="true" name="gender" required>
                                     <option disabled value="">Select Is Gender...</option>
                                     <option value="male">male</option>
                                     <option value="female">female</option>
@@ -151,8 +155,7 @@
                                 <label class="required fs-6 fw-semibold mb-2">Enrollment Status</label>
                                 <select class="form-select form-select-solid" v-model="form.enrollment_status"
                                     :class="{ 'is-invalid': errors.enrollment_status }" data-control="select2"
-                                    data-hide-search="true" data-placeholder="Select a Team Member"
-                                    name="enrollment_status">
+                                    data-hide-search="true" name="enrollment_status" required>
                                     <option disabled value="">Select Is Enrollment Status...</option>
                                     <option value="active">Active</option>
                                     <option value="completed">Completed</option>
@@ -197,7 +200,7 @@ const form = reactive({
     email: '',
     phone: '',
     national_number: '',
-    role: '',
+    role: 'student',
     is_active: '',
     gender: '',
     enrollment_status: '',
@@ -218,7 +221,7 @@ watch(() => props.studentData, (val) => {
         form.email = val.user.email || ''
         form.phone = val.user.phone || ''
         form.national_number = val.user.national_number || ''
-        form.role = val.user.role || ''
+        form.role = val.user.role || 'student'
         form.is_active = val.user.is_active || ''
         form.gender = val.user.gender || ''
         form.enrollment_status = val.enrollment_status || ''
@@ -233,7 +236,7 @@ watch(() => props.studentData, (val) => {
         form.email = ''
         form.phone = ''
         form.national_number = ''
-        form.role = ''
+        form.role = 'student'
         form.is_active = ''
         form.gender = ''
         form.enrollment_status = ''
