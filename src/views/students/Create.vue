@@ -92,14 +92,14 @@
                 </div>
             </div>
             <!-- Role -->
-            <div class="d-flex flex-column mb-8">
+            <!-- <div class="d-flex flex-column mb-8">
                 <label class="required fs-6 fw-semibold mb-2">Role</label>
                 <select class="form-select form-select-solid" v-model="form.role" :class="{ 'is-invalid': errors.role }"
                     data-control="select2" data-hide-search="true" name="role">
                     <option value="student">Student</option>
                 </select>
                 <Error v-if="errors.role" :message="getErrorMessage(errors.role)" />
-            </div>
+            </div> -->
             <div class="row g-9 mb-8">
                 <!-- Is Active -->
                 <div class="d-flex col-md-4 flex-column mb-8">
@@ -160,8 +160,8 @@ const props = defineProps({
     studentData: Object,
     errors: {
         type: Object,
-        default: () => ({}),
-    },
+        default: () => ({})
+    }
 })
 
 const emit = defineEmits(['update:modelValue', 'submit'])
@@ -234,7 +234,7 @@ const restForm = () => {
 }
 
 const handleSubmit = async () => {
-    const dataFilter = Object.fromEntries(Object.entries(form).filter(([key, value]) => value !== ''));
+    const dataFilter = Object.fromEntries(Object.entries(form).filter(([key, value]) => value !== ''))
     await emit('submit', dataFilter)
 }
 

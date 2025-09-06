@@ -1,4 +1,4 @@
-import Index from "../../../views/students/Index.vue";
+import Index from "@/views/students/Index.vue";
 const routes = [
   {
     path: "/student",
