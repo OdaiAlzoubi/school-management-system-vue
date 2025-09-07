@@ -143,7 +143,7 @@
             <div class="text-center">
                 <button type="button" class="btn btn-light me-3" @click="close">Cancel</button>
                 <button type="submit" class="btn btn-primary">{{ isEdit ? 'Update' : 'Submit'
-                }}</button>
+                    }}</button>
             </div>
         </form>
     </Modal>

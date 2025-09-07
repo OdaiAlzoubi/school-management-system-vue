@@ -136,7 +136,7 @@
                     </div>
                 </div>
             </div>
-            <Modal v-model="showModal" :isEdit="isEdit" :studentData="selectedStudent" @submit="handleSave"
+            <Create v-model="showModal" :isEdit="isEdit" :studentData="selectedStudent" @submit="handleSave"
                 :errors="validationErrors" />
         </template>
     </Master>
@@ -144,12 +144,12 @@
 
 <script setup>
 import Master from '@/components/MainContent.vue'
-import Modal from './Create.vue';
+import Create from './Create.vue';
 import Filter from './Filter.vue';
 import api from '@/services/api'
+import Alert from '@/components/common/Alert.vue';
 import { RouterLink, useRouter, useRoute } from 'vue-router';
 import { ref, watch } from 'vue'
-import Alert from '@/components/common/Alert.vue';
 
 const router = useRouter();
 const route = useRoute()

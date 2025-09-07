@@ -134,6 +134,17 @@
                                 <span class="menu-title">Students</span>
                             </router-link>
                         </div>
+                        <div class="menu-item menu-accordion" :class="isActiveRoute('grades') ? 'show' : ''">
+                            <router-link :to="{ name: 'grades' }" class="menu-link">
+                                <span class="menu-icon">
+                                    <i class="ki-duotone ki-chart fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                </span>
+                                <span class="menu-title">Grades</span>
+                            </router-link>
+                        </div>
                         <div class="menu-item menu-accordion" :class="isActiveRoute('guardian') ? 'show' : ''">
                             <router-link :to="{ name: 'guardian' }" class="menu-link">
                                 <span class="menu-icon">
