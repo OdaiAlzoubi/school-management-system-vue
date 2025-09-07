@@ -156,6 +156,17 @@
                                 <span class="menu-title">Guardian</span>
                             </router-link>
                         </div>
+                        <div class="menu-item menu-accordion" :class="isActiveRoute('subjects') ? 'show' : ''">
+                            <router-link :to="{ name: 'subjects' }" class="menu-link">
+                                <span class="menu-icon">
+                                    <i class="ki-duotone ki-chart fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                </span>
+                                <span class="menu-title">Subjects</span>
+                            </router-link>
+                        </div>
                     </div>
                 </div>
             </div>
