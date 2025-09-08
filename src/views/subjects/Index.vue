@@ -14,6 +14,7 @@
                                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                     <button @click="openAddModal" class="btn btn-primary">Add Subject</button>
                                 </div>
+                                <Filter @submit="fetchTable"/>
                             </div>
                             <!-- Table -->
                             <div class="card-body pt-0 table-responsive">
@@ -123,6 +124,7 @@
 
 <script setup>
 import Master from '@/components/MainContent.vue'
+import Filter from '@/views/subjects/Filter'
 import api from '@/services/api'
 import { ref } from 'vue';
 
