@@ -14,7 +14,7 @@
                                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                     <button @click="openAddModal" class="btn btn-primary">Add Subject</button>
                                 </div>
-                                <Filter @submit="fetchTable"/>
+                                <Filter @submit="fetchTable" />
                             </div>
                             <!-- Table -->
                             <div class="card-body pt-0 table-responsive">
@@ -31,6 +31,7 @@
                                             <th class="min-w-100px text-center">description</th>
                                             <th class="min-w-100px text-center">Grade</th>
                                             <th class="min-w-100px text-center">Type</th>
+                                            <th class="min-w-100px text-center">min passing score</th>
                                             <th class="min-w-100px text-center">credit hours</th>
                                             <th class="min-w-100px text-center">theory hours</th>
                                             <th class="min-w-100px text-center">practice hours</th>
@@ -56,10 +57,13 @@
                                                 <span class="fw-bold">{{ item.description ?? '-' }}</span>
                                             </td>
                                             <td class="text-center">
-                                                <span class="fw-bold">{{ item.grade ?? '-' }}</span>
+                                                <span class="fw-bold">{{ item.grade.name ?? '-' }}</span>
                                             </td>
                                             <td class="text-center">
                                                 <span class="fw-bold">{{ item.type }}</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="fw-bold">{{ item.min_passing_score }}</span>
                                             </td>
                                             <td class="text-center">
                                                 <span class="fw-bold">{{ item.credit_hours }}</span>
@@ -118,16 +122,56 @@
                     </div>
                 </div>
             </div>
+            <Create v-model="showModal" :isEdit="isEdit" :formData="selectedItem" @submit="handleSave"
+                :errors="validationErrors" />
         </template>
     </Master>
 </template>
 
 <script setup>
 import Master from '@/components/MainContent.vue'
-import Filter from '@/views/subjects/Filter'
+import Filter from '@/views/subjects/Filter.vue'
+import Create from '@/views/subjects/Create.vue'
 import api from '@/services/api'
 import { ref } from 'vue';
 
+// Modal
+const showModal = ref(false)
+const isEdit = ref(false)
+const selectedItem = ref(null)
+const validationErrors = ref([])
+const openAddModal = () => {
+    isEdit.value = false
+    selectedItem.value = null
+    showModal.value = true
+}
+const openEditModal = (item) => {
+    isEdit.value = true
+    selectedItem.value = item
+    showModal.value = true
+}
+const handleSave = async (formData) => {
+    try {
+        validationErrors.value = []
+        let response
+        if (isEdit.value) {
+            response = await api.put(`subject/update/${selectedItem.value.id}`, formData)
+        } else {
+            response = await api.post('subject/create', formData)
+        }
+        Swal.fire({
+            icon: "success",
+            title: response.data.message,
+            showConfirmButton: false,
+            timer: 2500
+        });
+        showModal.value = false
+        fetchTable()
+    } catch (error) {
+        validationErrors.value = error.response.data.errors || []
+    }
+}
+// Table
 const tbody = ref([])
 const loading = ref(false)
 const fetchTable = async (e) => {
