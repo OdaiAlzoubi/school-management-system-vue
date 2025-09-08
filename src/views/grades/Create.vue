@@ -55,15 +55,25 @@
                     </div>
                     <div class="d-flex col-md-4 flex-column mb-8">
                         <label class="required fs-6 fw-semibold mb-2">shift</label>
-                        <input v-model="section.shift" type="text" class="form-control form-control-solid"
-                            :class="{ 'is-invalid': errors[`sections.${index}.shift`] }" placeholder="Enter Name">
+                        <select class="form-select form-select-solid" v-model="section.shift"
+                            :class="{ 'is-invalid': errors[`sections.${index}.shift`] }" data-control="select2"
+                            data-hide-search="true" name="shift" required>
+                            <option disabled value="">Select Shift...</option>
+                            <option v-for="shift in shiftOptions" :key="shift.value" :value="shift.value">
+                                {{ shift.label }}</option>
+                        </select>
                         <Error v-if="errors[`sections.${index}.shift`]"
                             :message="getErrorMessage(errors[`sections.${index}.shift`])" />
                     </div>
                     <div class="d-flex col-md-4 flex-column mb-8">
                         <label class="required fs-6 fw-semibold mb-2">is_active</label>
-                        <input v-model="section.is_active" type="text" class="form-control form-control-solid"
-                            :class="{ 'is-invalid': errors[`sections.${index}.is_active`] }" placeholder="Enter Name">
+                        <select class="form-select form-select-solid" v-model="section.is_active"
+                            :class="{ 'is-invalid': errors[`sections.${index}.is_active`] }" data-control="select2"
+                            data-hide-search="true" name="is_active" required>
+                            <option disabled value="">Select Is Active...</option>
+                            <option value="1">Active</option>
+                            <option value="0">InActive</option>
+                        </select>
                         <Error v-if="errors[`sections.${index}.is_active`]"
                             :message="getErrorMessage(errors[`sections.${index}.is_active`])" />
                     </div>
@@ -87,7 +97,7 @@
             <div class="text-center">
                 <button type="button" class="btn btn-light me-3" @click="close">Cancel</button>
                 <button type="submit" class="btn btn-primary">{{ isEdit ? 'Update' : 'Submit'
-                }}</button>
+                    }}</button>
             </div>
         </form>
     </Modal>
@@ -171,7 +181,6 @@ const removeSection = (index) => {
     else {
         form.sections.splice(index, 1)
     }
-
 }
 
 watch(() => props.fromData, (val) => {
@@ -217,6 +226,26 @@ const close = () => {
     emit('update:modelValue', false)
     // restForm()
 }
+
+// Load Shift
+const shiftOptions = ref([])
+const shiftsLoaded = ref(false)
+const loadShift = async () => {
+    try {
+        if (!shiftsLoaded.value) {
+            const { data } = await api.get('/enums/shifts')
+            shiftOptions.value = data.data
+            shiftsLoaded.value = true
+        }
+    } catch (error) {
+        console.error(error)
+    }
+}
+watch(() => props.modelValue, (val) => {
+    if (val) {
+        loadShift()
+    }
+})
 </script>
 
 <style scoped>
