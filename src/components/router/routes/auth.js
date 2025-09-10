@@ -4,7 +4,7 @@ import api from "@/services/api";
 const routes = [
   {
     path: "/login",
-    name: "Login",
+    name: "login",
     component: Login,
     meta: { isLogin: true },
   },
@@ -17,14 +17,12 @@ const routes = [
         if (token) {
           await api.post("/logout");
         }
-        // setTimeout(() => {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         next({
-          name: "Login",
+          name: "login",
           query: { logout: true },
         });
-        // }, 100);
       } catch (error) {
         console.error(error);
       }

@@ -1,4 +1,7 @@
 import axios from "axios";
+import { useRouter } from "vue-router";
+
+const router = useRouter()
 
 const instance = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
@@ -22,4 +25,15 @@ instance.interceptors.request.use(
     }
 );
 
+
+instance.interceptors.response.use(
+    (response) =>{
+        return response
+    },
+    async (error)=>{
+        if (error.response && error.response.status === 401) {
+            router.push({ name: 'login' })
+        }
+    }
+)
 export default instance;
