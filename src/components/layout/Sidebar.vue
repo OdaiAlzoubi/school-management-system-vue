@@ -114,13 +114,13 @@
                                         <span class="path2"></span>
                                     </i>
                                 </span>
-                                <span class="menu-title">Dashboard</span>
+                                <span class="menu-title">{{ t('menu.dashboard') }}</span>
                             </router-link>
                         </div>
                         <!-- {{-- Product Management --}} -->
                         <div class="menu-item pt-5">
                             <div class="menu-content">
-                                <span class="menu-heading fw-bold text-uppercase fs-7">School Management</span>
+                                <span class="menu-heading fw-bold text-uppercase fs-7">{{ t('menu.school_management') }}</span>
                             </div>
                         </div>
                         <div class="menu-item menu-accordion" :class="isActiveRoute('student') ? 'show' : ''">
@@ -131,7 +131,7 @@
                                         <span class="path2"></span>
                                     </i>
                                 </span>
-                                <span class="menu-title">Students</span>
+                                <span class="menu-title">{{ t('menu.students') }}</span>
                             </router-link>
                         </div>
                         <div class="menu-item menu-accordion" :class="isActiveRoute('grades') ? 'show' : ''">
@@ -142,7 +142,7 @@
                                         <span class="path2"></span>
                                     </i>
                                 </span>
-                                <span class="menu-title">Grades</span>
+                                <span class="menu-title">{{ t('menu.grades') }}</span>
                             </router-link>
                         </div>
                         <div class="menu-item menu-accordion" :class="isActiveRoute('guardian') ? 'show' : ''">
@@ -153,7 +153,7 @@
                                         <span class="path2"></span>
                                     </i>
                                 </span>
-                                <span class="menu-title">Guardian</span>
+                                <span class="menu-title">{{ t('menu.guardian') }}</span>
                             </router-link>
                         </div>
                         <div class="menu-item menu-accordion" :class="isActiveRoute('subjects') ? 'show' : ''">
@@ -164,7 +164,7 @@
                                         <span class="path2"></span>
                                     </i>
                                 </span>
-                                <span class="menu-title">Subjects</span>
+                                <span class="menu-title">{{ t('menu.subjects') }}</span>
                             </router-link>
                         </div>
                     </div>
@@ -175,8 +175,9 @@
 </template>
 <script setup>
 import { useRoute } from 'vue-router'
-
+import { useI18n } from "vue-i18n";
 const route = useRoute()
+const {t} = useI18n();
 
 const isActiveRoute = (prefix) => {
     return route.name?.toString().startsWith(prefix)

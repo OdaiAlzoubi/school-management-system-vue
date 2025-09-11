@@ -81,7 +81,10 @@
 
 <script setup>
 import { inject } from 'vue';
-const title = inject('title', 'Dashboard');
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+const title = inject('title', t('dashboard.dashboard'));
 // defineProps({
 //     title: {
 //         type: String,
