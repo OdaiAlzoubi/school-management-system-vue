@@ -21,8 +21,8 @@
                 </div>
             </div>
             <!-- Table -->
-            <div class="card-body pt-0 table-responsive">
-                <table class="table align-middle table-row-dashed fs-6 gy-5">
+            <Table>
+                <template #thead>
                     <thead>
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                             <th class="w-10px pe-2">
@@ -48,6 +48,8 @@
                             <th class="text-end min-w-100px">Actions</th>
                         </tr>
                     </thead>
+                </template>
+                <template #tbody>
                     <tbody class="fw-semibold text-gray-600">
                         <tr v-for="(item, index) in tbody" :key="index">
                             <td>
@@ -112,7 +114,8 @@
                                                 t('table.edit') }}</a>
                                         </div>
                                         <div v-if="route.name == 'student'" class="menu-item px-3">
-                                            <a href="#" @click="deleteStudent(item.id)" class="menu-link px-3">Delete</a>
+                                            <a href="#" @click="deleteStudent(item.id)"
+                                                class="menu-link px-3">Delete</a>
                                         </div>
                                         <div v-if="route.name == 'student.onlyTrashed'" class="menu-item px-3">
                                             <a href="#" @click="restoreStudent(item.id)"
@@ -123,8 +126,8 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
-            </div>
+                </template>
+            </Table>
         </template>
         <template #modal>
             <Create v-model="showModal" :isEdit="isEdit" :studentData="selectedStudent" @submit="handleSave"
@@ -135,6 +138,7 @@
 
 <script setup>
 import Index from '@/components/pages/Index'
+import Table from '@/components/table/Table'
 import Create from './Create.vue';
 import Filter from './Filter.vue';
 import api from '@/services/api'
