@@ -13,11 +13,11 @@
                                 <!--begin::Card toolbar-->
                                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                     <!--begin::Add product-->
-                                    <button @click="openAddModal" class="btn btn-primary">Add Student</button>
+                                    <button @click="openAddModal" class="btn btn-primary">{{ t('table.add') }} {{ t('student.student') }}</button>
                                     <router-link v-if="route.name == 'student'" :to="{ name: 'student.onlyTrashed' }"
-                                        class="btn btn-primary">Student Trashed</router-link>
+                                        class="btn btn-primary">{{ t('student.students') }} {{ t('student.trashed') }}</router-link>
                                     <router-link v-if="route.name == 'student.onlyTrashed'" :to="{ name: 'student' }"
-                                        class="btn btn-primary">Student Active</router-link>
+                                        class="btn btn-primary">{{ t('student.students') }} Active</router-link>
                                     <Filter @submit="fetchStudents" />
                                 </div>
                                 <!--end::Card toolbar-->
@@ -35,19 +35,19 @@
                                                         value="1" />
                                                 </div>
                                             </th>
-                                            <th class="min-w-100px">id</th>
+                                            <th class="min-w-100px">{{ t('form.id') }}</th>
                                             <!-- <th v-for="n in thead" class=" min-w-100px">{{ n }}</th> -->
-                                            <th class=" min-w-100px">name</th>
-                                            <th class=" min-w-100px">email</th>
-                                            <th class=" min-w-100px">phone</th>
-                                            <th class=" min-w-100px">nationality</th>
-                                            <th class=" min-w-100px">gender</th>
-                                            <th class=" min-w-100px">Enrollment Status</th>
-                                            <th class=" min-w-100px">date_of_birth</th>
-                                            <th class=" min-w-100px">is_active</th>
-                                            <th class=" min-w-100px">country</th>
-                                            <th class=" min-w-100px">city</th>
-                                            <th class=" min-w-100px">street</th>
+                                            <th class=" min-w-100px">{{ t('form.name') }}</th>
+                                            <th class=" min-w-100px">{{ t('student.email') }}</th>
+                                            <th class=" min-w-100px">{{ t('student.phone') }}</th>
+                                            <th class=" min-w-100px">{{ t('student.nationality') }}</th>
+                                            <th class=" min-w-100px">{{ t('student.gender') }}</th>
+                                            <th class=" min-w-100px">{{ t('student.enrollment_status') }}</th>
+                                            <th class=" min-w-100px">{{ t('student.date_of_birth') }}</th>
+                                            <th class=" min-w-100px">{{ t('student.is_active') }}</th>
+                                            <th class=" min-w-100px">{{ t('student.country') }}</th>
+                                            <th class=" min-w-100px">{{ t('student.city') }}</th>
+                                            <th class=" min-w-100px">{{ t('student.street') }}</th>
                                             <th class="text-end min-w-100px">Actions</th>
                                         </tr>
                                     </thead>
@@ -114,11 +114,11 @@
                                                         data-kt-menu="true">
                                                         <div class="menu-item px-3">
                                                             <a href="#" @click="openEditModal(item)"
-                                                                class="menu-link px-3">Edit</a>
+                                                                class="menu-link px-3">{{ t('table.edit') }}</a>
                                                         </div>
                                                         <div v-if="route.name == 'student'" class="menu-item px-3">
                                                             <a href="#" @click="deleteStudent(item.id)"
-                                                                class="menu-link px-3">Delete</a>
+                                                                class="menu-link px-3">{{ t('table.delete') }}</a>
                                                         </div>
                                                         <div v-if="route.name == 'student.onlyTrashed'"
                                                             class="menu-item px-3">
@@ -150,7 +150,9 @@ import api from '@/services/api'
 import Alert from '@/components/common/Alert.vue';
 import { RouterLink, useRouter, useRoute } from 'vue-router';
 import { ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n()
 const router = useRouter();
 const route = useRoute()
 // Table

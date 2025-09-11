@@ -1,0 +1,15 @@
+{
+  "student": "طالب",
+  "students": "طلاب",
+  "email": "البريد الإلكتروني",
+  "phone": "رقم الهاتف",
+  "nationality": "الجنسية",
+  "gender": "الجنس",
+  "enrollment_status": "حالة التسجيل",
+  "date_of_birth": "تاريخ الميلاد",
+  "is_active": "فعال",
+  "country": "الدولة",
+  "city": "المدينة",
+  "street": "الشارع",
+  "trashed": "محذوفين"
+}

@@ -7,14 +7,14 @@
                     <span class="path1"></span>
                     <span class="path2"></span>
                 </i>
-                Filter
+                {{ t('table.filter') }}
             </button>
             <form @submit="handleSubmit" class="form-inline">
                 <ul class="dropdown-menu dropdown-menu-end w-300px w-md-325px overflow-auto" style="max-height: 60vh;"
                     aria-labelledby="dropdownMenuButton">
                     <!-- Header -->
                     <li class="px-7 py-5">
-                        <div class="fs-5 text-gray-900 fw-bold">Filter Options</div>
+                        <div class="fs-5 text-gray-900 fw-bold">{{ t('table.filter') }}</div>
                     </li>
                     <li>
                         <hr class="dropdown-divider border-gray-200">
@@ -79,6 +79,9 @@
 </template>
 <script setup>
 import { reactive } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n()
 
 const filter = reactive({
     id: '',
