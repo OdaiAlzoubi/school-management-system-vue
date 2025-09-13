@@ -25,43 +25,20 @@
                 <template #thead>
                     <thead>
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                            <th class="w-10px pe-2">
-                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                    <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                        data-kt-check-target="#kt_ecommerce_products_table .form-check-input"
-                                        value="1" />
-                                </div>
-                            </th>
-                            <th class="min-w-100px">{{ t('form.id') }}</th>
-                            <!-- <th v-for="n in thead" class=" min-w-100px">{{ n }}</th> -->
-                            <th class=" min-w-100px">{{ t('form.name') }}</th>
-                            <th class=" min-w-100px">{{ t('student.email') }}</th>
-                            <th class=" min-w-100px">{{ t('student.phone') }}</th>
-                            <th class=" min-w-100px">{{ t('student.nationality') }}</th>
-                            <th class=" min-w-100px">{{ t('student.gender') }}</th>
-                            <th class=" min-w-100px">{{ t('student.enrollment_status') }}</th>
-                            <th class=" min-w-100px">{{ t('student.date_of_birth') }}</th>
-                            <th class=" min-w-100px">{{ t('student.is_active') }}</th>
-                            <th class=" min-w-100px">{{ t('student.country') }}</th>
-                            <th class=" min-w-100px">{{ t('student.city') }}</th>
-                            <th class=" min-w-100px">{{ t('student.street') }}</th>
-                            <th class="text-end min-w-100px">Actions</th>
+                            <th class="min-w-100px">ID</th>
+                            <th v-for="n in thead" class=" min-w-100px">{{ n }}</th>
+                            <th class="text-end min-w-100px">{{ t('table.actions') }}</th>
                         </tr>
                     </thead>
                 </template>
                 <template #tbody>
                     <tbody class="fw-semibold text-gray-600">
                         <tr v-for="(item, index) in tbody" :key="index">
-                            <td>
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="1" />
-                                </div>
-                            </td>
                             <td class="">
                                 <span class="fw-bold">{{ item.id }}</span>
                             </td>
                             <td class="">
-                                <span class="fw-bold">{{ item.user.name }}</span>
+                                <span class="fw-bold text-capitalize">{{ item.user.name }}</span>
                             </td>
                             <td class="">
                                 <span class="fw-bold">{{ item.user.email ?? '-' }}</span>
@@ -70,15 +47,15 @@
                                 <span class="fw-bold">{{ item.user.phone ?? '-' }}</span>
                             </td>
                             <td class="">
-                                <span class="fw-bold">{{ item.nationality ?? '-' }}</span>
+                                <span class="fw-bold text-capitalize">{{ item.nationality ?? '-' }}</span>
                             </td>
                             <td class="">
-                                <span class="fw-bold">{{ item.user.gender }}</span>
+                                <span class="fw-bold text-capitalize">{{ item.user.gender }}</span>
                             </td>
                             <td class="">
                                 <div
                                     :class="`badge badge-light-${item.enrollment_status === 'active' ? 'success' : 'danger'}`">
-                                    <span class="fw-bold">{{ item.enrollment_status }}</span>
+                                    <span class="fw-bold text-capitalize">{{ item.enrollment_status }}</span>
                                 </div>
                             </td>
                             <td class="">
@@ -86,18 +63,18 @@
                             </td>
                             <td class="">
                                 <div :class="`badge badge-light-${item.user.is_active ? 'success' : 'danger'}`">
-                                    <span class="fw-bold">{{ item.user.is_active ? 'Active' :
+                                    <span class="fw-bold text-capitalize">{{ item.user.is_active ? 'Active' :
                                         'Inactive' }}</span>
                                 </div>
                             </td>
                             <td class="">
-                                <span class="fw-bold">{{ item.user.address.country }}</span>
+                                <span class="fw-bold text-capitalize">{{ item.user.address.country }}</span>
                             </td>
                             <td class="">
-                                <span class="fw-bold">{{ item.user.address.city }}</span>
+                                <span class="fw-bold text-capitalize">{{ item.user.address.city }}</span>
                             </td>
                             <td class="">
-                                <span class="fw-bold">{{ item.user.address.street }}</span>
+                                <span class="fw-bold text-capitalize">{{ item.user.address.street }}</span>
                             </td>
                             <td class="text-end">
                                 <div class="dropdown">
@@ -151,28 +128,24 @@ const router = useRouter();
 const route = useRoute()
 // Table
 const tbody = ref([]);
-const thead = ref(['id', 'name']);
+const thead = ref([
+    t('student.name'), t('student.email'), t('student.phone'), t('student.nationality'), t('student.gender'), t('student.enrollment_status'), t('student.date_of_birth'), t('student.is_active'), t('student.country'), t('student.city'), t('student.street')
+]);
 // Modal
 const showModal = ref(false)
 const isEdit = ref(false)
 const selectedStudent = ref(null)
-// Alerts
 const validationErrors = ref([])
-const successMessage = ref(null)
-const errorMessage = ref(null)
-
 const openAddModal = () => {
     isEdit.value = false
     selectedStudent.value = null
     showModal.value = true
 }
-
 const openEditModal = (student) => {
     isEdit.value = true
     selectedStudent.value = student
     showModal.value = true
 }
-
 const handleSave = async (studentData) => {
     try {
         validationErrors.value = []
@@ -189,6 +162,9 @@ const handleSave = async (studentData) => {
         validationErrors.value = error.response.data.errors || {}
     }
 }
+// Alerts
+const successMessage = ref(null)
+const errorMessage = ref(null)
 
 const deleteStudent = async (studentId) => {
     if (confirm('Are you sure you want to delete this student?')) {

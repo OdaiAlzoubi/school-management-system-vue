@@ -8,19 +8,19 @@
             <!-- Name -->
             <div class="row g-9 mb-8">
                 <div class="d-flex col-md-4 flex-column mb-8">
-                    <label class="required fs-6 fw-semibold mb-2">First Name</label>
+                    <label class="required fs-6 fw-semibold mb-2">{{ t('student.first_name') }}</label>
                     <input v-model="form.first_name" type="text" class="form-control form-control-solid"
                         :class="{ 'is-invalid': errors.first_name }" placeholder="Enter First Name" required>
                     <Error v-if="errors.first_name" :message="getErrorMessage(errors.first_name)" />
                 </div>
                 <div class=" d-flex col-md-4 flex-column mb-8">
-                    <label class="required fs-6 fw-semibold mb-2">Middle Name</label>
+                    <label class="required fs-6 fw-semibold mb-2">{{ t('student.middle_name') }}</label>
                     <input v-model="form.middle_name" type="text" class="form-control form-control-solid"
                         :class="{ 'is-invalid': errors.middle_name }" placeholder="Enter Middle Name" required>
                     <Error v-if="errors.middle_name" :message="getErrorMessage(errors.middle_name)" />
                 </div>
                 <div class="d-flex col-md-4 flex-column mb-8">
-                    <label class="required fs-6 fw-semibold mb-2">Last Name</label>
+                    <label class="required fs-6 fw-semibold mb-2">{{ t('student.last_name') }}</label>
                     <input v-model="form.last_name" type="text" class="form-control form-control-solid"
                         :class="{ 'is-invalid': errors.last_name }" placeholder="Enter Last Name" required>
                     <Error v-if="errors.last_name" :message="getErrorMessage(errors.last_name)" />
@@ -30,14 +30,14 @@
             <div class="row g-9 mb-8">
                 <!-- Email -->
                 <div class="d-flex col-md-6 flex-column mb-8">
-                    <label class="fs-6 fw-semibold mb-2">Email</label>
+                    <label class="fs-6 fw-semibold mb-2">{{ t('student.email') }}</label>
                     <input v-model="form.email" type="email" class="form-control form-control-solid "
                         :class="{ 'is-invalid': errors.email }" placeholder="Enter Email">
                     <Error v-if="errors.email" :message="getErrorMessage(errors.email)" />
                 </div>
                 <!-- Phone -->
                 <div class="d-flex col-md-6 flex-column mb-8">
-                    <label class="fs-6 fw-semibold mb-2">Phone</label>
+                    <label class="fs-6 fw-semibold mb-2">{{ t('student.phone') }}</label>
                     <input v-model="form.phone" type="number" class="form-control form-control-solid"
                         :class="{ 'is-invalid': errors.phone }" placeholder="Enter Phone">
                     <Error v-if="errors.phone" :message="getErrorMessage(errors.phone)" />
@@ -45,7 +45,7 @@
             </div>
             <!-- national_number -->
             <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">National Number</label>
+                <label class="required fs-6 fw-semibold mb-2">{{ t('student.national_number') }}</label>
                 <input v-model="form.national_number" type="number" class="form-control form-control-solid"
                     :class="{ 'is-invalid': errors.national_number }" placeholder="Enter National Number" required>
                 <Error v-if="errors.national_number" :message="getErrorMessage(errors.national_number)" />
@@ -53,19 +53,19 @@
             <!-- address -->
             <div class="row g-9 mb-8">
                 <div class="d-flex col-md-4 flex-column mb-8">
-                    <label class="required fs-6 fw-semibold mb-2">country</label>
+                    <label class="required fs-6 fw-semibold mb-2">{{ t('student.country') }}</label>
                     <input v-model="form.address.country" type="text" class="form-control form-control-solid"
                         :class="{ 'is-invalid': errors['address.country'] }" placeholder="Enter country" required>
                     <Error v-if="errors['address.country']" :message="getErrorMessage(errors['address.country'])" />
                 </div>
                 <div class="d-flex col-md-4 flex-column mb-8">
-                    <label class="required fs-6 fw-semibold mb-2">city</label>
+                    <label class="required fs-6 fw-semibold mb-2">{{ t('student.city') }}</label>
                     <input v-model="form.address.city" type="text" class="form-control form-control-solid"
                         :class="{ 'is-invalid': errors['address.city'] }" placeholder="Enter city" required>
                     <Error v-if="errors['address.city']" :message="getErrorMessage(errors['address.city'])" />
                 </div>
                 <div class="d-flex col-md-4 flex-column mb-8">
-                    <label class="required fs-6 fw-semibold mb-2">street</label>
+                    <label class="required fs-6 fw-semibold mb-2">{{ t('student.street') }}</label>
                     <input v-model="form.address.street" type="text" class="form-control form-control-solid"
                         :class="{ 'is-invalid': errors['address.street'] }" placeholder="Enter street" required>
                     <Error v-if="errors['address.street']" :message="getErrorMessage(errors['address.street'])" />
@@ -73,7 +73,7 @@
             </div>
             <!-- Date of Birth -->
             <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">Date of Birth</label>
+                <label class="required fs-6 fw-semibold mb-2">{{ t('student.date_of_birth') }}</label>
                 <!--begin::Input-->
                 <div class="position-relative d-flex align-items-center">
                     <!--begin::Icon-->
@@ -92,18 +92,10 @@
                 </div>
             </div>
             <!-- Role -->
-            <!-- <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">Role</label>
-                <select class="form-select form-select-solid" v-model="form.role" :class="{ 'is-invalid': errors.role }"
-                    data-control="select2" data-hide-search="true" name="role">
-                    <option value="student">Student</option>
-                </select>
-                <Error v-if="errors.role" :message="getErrorMessage(errors.role)" />
-            </div> -->
             <div class="row g-9 mb-8">
                 <!-- Is Active -->
                 <div class="d-flex col-md-4 flex-column mb-8">
-                    <label class="required fs-6 fw-semibold mb-2">Is Active</label>
+                    <label class="required fs-6 fw-semibold mb-2">{{ t('student.is_active') }}</label>
                     <select class="form-select form-select-solid" v-model="form.is_active"
                         :class="{ 'is-invalid': errors.is_active }" data-control="select2" data-hide-search="true"
                         name="is_active" required>
@@ -115,7 +107,7 @@
                 </div>
                 <!-- Is Gender -->
                 <div class="d-flex col-md-4 flex-column mb-8">
-                    <label class="required fs-6 fw-semibold mb-2">Gender</label>
+                    <label class="required fs-6 fw-semibold mb-2">{{ t('student.gender') }}</label>
                     <select class="form-select form-select-solid" v-model="form.gender"
                         :class="{ 'is-invalid': errors.gender }" data-control="select2" data-hide-search="true"
                         name="gender" required>
@@ -127,7 +119,7 @@
                 </div>
                 <!-- Is Enrollment Status -->
                 <div class="d-flex col-md-4 flex-column mb-8">
-                    <label class="required fs-6 fw-semibold mb-2">Enrollment Status</label>
+                    <label class="required fs-6 fw-semibold mb-2">{{ t('student.enrollment_status') }}</label>
                     <select class="form-select form-select-solid" v-model="form.enrollment_status"
                         :class="{ 'is-invalid': errors.enrollment_status }" data-control="select2"
                         data-hide-search="true" name="enrollment_status" required>
@@ -141,8 +133,8 @@
             </div>
             <!-- Actions -->
             <div class="text-center">
-                <button type="button" class="btn btn-light me-3" @click="close">Cancel</button>
-                <button type="submit" class="btn btn-primary">{{ isEdit ? 'Update' : 'Submit'
+                <button type="button" class="btn btn-light me-3" @click="close">{{ t('form.cancel') }}</button>
+                <button type="submit" class="btn btn-primary">{{ isEdit ? t('form.update') : t('form.submit')
                     }}</button>
             </div>
         </form>
@@ -153,6 +145,9 @@
 import { reactive, watch } from 'vue'
 import Modal from '@/components/modal/Modal'
 import Error from '@/components/common/Error'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps({
     modelValue: Boolean,

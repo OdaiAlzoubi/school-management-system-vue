@@ -1,4 +1,5 @@
 {
+  "name": "الاسم",
   "student": "طالب",
   "students": "طلاب",
   "email": "البريد الإلكتروني",
@@ -7,9 +8,13 @@
   "gender": "الجنس",
   "enrollment_status": "حالة التسجيل",
   "date_of_birth": "تاريخ الميلاد",
+  "national_number": "رقم الهوية",
   "is_active": "فعال",
   "country": "الدولة",
   "city": "المدينة",
   "street": "الشارع",
-  "trashed": "محذوفين"
+  "trashed": "محذوفين",
+  "first_name": "الاسم الأول",
+  "middle_name": "الاسم الأوسط",
+  "last_name": "الاسم الأخير"
 }
