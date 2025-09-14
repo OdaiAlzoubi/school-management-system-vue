@@ -1,128 +1,102 @@
 <template>
-    <Master>
+    <Index>
         <template #content>
-            <Alert :successMessage="successMessage" :errorMessage="errorMessage" />
-            <div class="content d-flex flex-column flex-column-fluid">
-                <div class="post d-flex flex-column-fluid">
-                    <div class="container-xxl" style="max-width: none;">
-                        <div class="card card-flush">
-                            <div class="card-header align-items-center py-5 gap-2 gap-md-5">
-                                <!--begin::Card title-->
-                                <div class="card-title">
-                                    <h1>Grades</h1>
-                                </div>
-                                <!--begin::Card toolbar-->
-                                <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                                    <button @click="openAddModal" class="btn btn-primary">Add Grade</button>
-                                    <!-- <Filter @submit="fetchTable" /> -->
-                                </div>
-                            </div>
-                            <!-- Table -->
-                            <div class="card-body pt-0 table-responsive">
-                                <table class="table align-middle table-row-dashed fs-6 gy-5">
-                                    <thead>
-                                        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                                            <th class="w-10px pe-2">
-                                                <div
-                                                    class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                                    <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                                        value="1" />
-                                                </div>
-                                            </th>
-                                            <th class="min-w-100px">id</th>
-                                            <th class="min-w-100px">name</th>
-                                            <th class="text-center min-w-100px">Sections Count</th>
-                                            <th class="text-end min-w-100px">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="fw-semibold text-gray-600">
-                                        <tr v-for="(item, index) in tbody" :key="index">
-                                            <td>
-                                                <div
-                                                    class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                </div>
-                                            </td>
-                                            <td class="">
-                                                <span class="fw-bold">{{ item.uuid }}</span>
-                                            </td>
-                                            <td class="">
-                                                <span class="fw-bold">{{ item.name }}</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <span class="fw-bold">{{ item.sections_count }}</span>
-                                            </td>
-                                            <td class="text-end">
-                                                <div class="dropdown">
-                                                    <a href="#"
-                                                        class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                            class="ki-solid ki-dots-horizontal fs-2x"></i>
-                                                    </a>
-                                                    <!--begin::Menu-->
-                                                    <div class=" dropdown-menu menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                                        data-kt-menu="true">
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" @click="openEditModal(item)"
-                                                                class="menu-link px-3">Edit</a>
-                                                        </div>
-                                                        <div v-if="route.name == 'grade'" class="menu-item px-3">
-                                                            <a href="#" @click="deletegrade(item.id)"
-                                                                class="menu-link px-3">Delete</a>
-                                                        </div>
-                                                        <div v-if="route.name == 'grade.onlyTrashed'"
-                                                            class="menu-item px-3">
-                                                            <a href="#" @click="restoregrade(item.id)"
-                                                                class="menu-link px-3">Restore</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+            <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                <!--begin::Card title-->
+                <div class="card-title">
+                    <h1>{{ t('menu.grades') }}</h1>
+                </div>
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                    <button @click="openAddModal" class="btn btn-primary">{{ t('grade.add') }}</button>
+                    <!-- <Filter @submit="fetchTable" /> -->
                 </div>
             </div>
+            <Table>
+                <template #thead>
+                    <thead>
+                        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                            <th class=" min-w-100px">id</th>
+                            <th v-for="n in thead" class=" min-w-100px">{{ n }}</th>
+                            <th class="text-end min-w-100px">{{ t('table.actions') }}</th>
+                        </tr>
+                    </thead>
+                </template>
+                <template #tbody>
+                    <tbody class="fw-semibold text-gray-600">
+                        <tr v-for="(item, index) in tbody" :key="index">
+                            <td class="">
+                                <span class="fw-bold">{{ item.id }}</span>
+                            </td>
+                            <td class="">
+                                <span class="fw-bold">{{ item.name }}</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="fw-bold">{{ item.sections_count }}</span>
+                            </td>
+                            <td class="text-end">
+                                <div class="dropdown">
+                                    <a href="#"
+                                        class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
+                                        data-bs-toggle="dropdown" aria-expanded="false"><i
+                                            class="ki-solid ki-dots-horizontal fs-2x"></i>
+                                    </a>
+                                    <!--begin::Menu-->
+                                    <div class=" dropdown-menu menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
+                                        data-kt-menu="true">
+                                        <div class="menu-item px-3">
+                                            <a href="#" @click="openEditModal(item)" class="menu-link px-3">{{
+                                                t('table.edit') }}</a>
+                                        </div>
+                                        <div v-if="route.name == 'grade'" class="menu-item px-3">
+                                            <a href="#" @click="deletegrade(item.id)" class="menu-link px-3">Delete</a>
+                                        </div>
+                                        <div v-if="route.name == 'grade.onlyTrashed'" class="menu-item px-3">
+                                            <a href="#" @click="restoregrade(item.id)"
+                                                class="menu-link px-3">Restore</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </template>
+            </Table>
+        </template>
+        <template #modal>
             <Create v-model="showModal" :isEdit="isEdit" :fromData="selectedItem" @submit="handleSave"
                 :errors="validationErrors" />
         </template>
-    </Master>
+    </Index>
 </template>
 
 <script setup>
-import Master from '@/components/MainContent.vue'
-import Alert from '@/components/common/Alert.vue';
+import Index from '@/components/pages/Index'
+import Table from '@/components/table/Table'
 import api from '@/services/api'
 import Create from '@/views/grades/Create';
+import { useI18n } from 'vue-i18n'
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router'
 
+const { t } = useI18n()
 const route = useRoute()
 
 // Modal
 const showModal = ref(false)
 const isEdit = ref(false)
 const selectedItem = ref(null)
-// Alerts
 const validationErrors = ref([])
-const successMessage = ref(null)
-const errorMessage = ref(null)
-
 const openAddModal = () => {
     isEdit.value = false
     selectedItem.value = null
     showModal.value = true
 }
-
 const openEditModal = (grade) => {
     isEdit.value = true
     selectedItem.value = grade
     showModal.value = true
 }
-
 const handleSave = async (fromData) => {
     try {
         validationErrors.value = []
@@ -150,6 +124,9 @@ const handleSave = async (fromData) => {
     }
 }
 
+const thead = ref([
+    t('grade.name'), t('grade.sections_count')
+])
 const tbody = ref([])
 const fetchTable = async (e) => {
     try {

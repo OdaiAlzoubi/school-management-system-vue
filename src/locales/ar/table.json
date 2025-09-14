@@ -3,5 +3,9 @@
   "edit": "تعديل",
   "delete": "حذف",
   "filter": "فلتر",
-  "actions": "الإجراءات"
+  "actions": "الإجراءات",
+  "created_at_from": "تم إنشاؤها من",
+  "created_at_to": "تم إنشاؤها إلى",
+  "apply": "تطبيق",
+  "reset": "إعادة تعيين"
 }

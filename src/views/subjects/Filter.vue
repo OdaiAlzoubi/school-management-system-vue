@@ -7,14 +7,14 @@
                     <span class="path1"></span>
                     <span class="path2"></span>
                 </i>
-                Filter
+                {{ t('table.filter') }}
             </button>
             <form @submit="handleSubmit" class="form-inline">
                 <ul class="dropdown-menu dropdown-menu-end w-300px w-md-325px overflow-auto" style="max-height: 60vh;"
                     aria-labelledby="dropdownMenuButton">
                     <!-- Header -->
                     <li class="px-7 py-5">
-                        <div class="fs-5 text-gray-900 fw-bold">Filter Options</div>
+                        <div class="fs-5 text-gray-900 fw-bold">{{ t('table.filter') }}</div>
                     </li>
                     <li>
                         <hr class="dropdown-divider border-gray-200">
@@ -27,7 +27,7 @@
                                 placeholder="ID" />
                         </div>
                         <div class="mb-10">
-                            <label class="form-label fs-6 fw-semibold">Is Active</label>
+                            <label class="form-label fs-6 fw-semibold">{{ t('subject.is_active') }}</label>
                             <select v-model="filter.is_active" name="is_active"
                                 class="form-select form-select-solid form-select-lg fw-semibold">
                                 <option disabled value="">Select Is Active...</option>
@@ -36,7 +36,7 @@
                             </select>
                         </div>
                         <div class="mb-10">
-                            <label class="form-label fs-6 fw-semibold">Grade</label>
+                            <label class="form-label fs-6 fw-semibold">{{ t('subject.grade') }}</label>
                             <select v-model="filter.grade_id" name="grade_id"
                                 class="form-select form-select-solid form-select-lg fw-semibold">
                                 <option disabled value="">Select Is Grade...</option>
@@ -45,7 +45,7 @@
                             </select>
                         </div>
                         <div class="mb-10">
-                            <label class="form-label fs-6 fw-semibold">Is Offered</label>
+                            <label class="form-label fs-6 fw-semibold">{{ t('subject.is_offered') }}</label>
                             <select v-model="filter.is_offered" name="is_offered"
                                 class="form-select form-select-solid form-select-lg fw-semibold">
                                 <option disabled value="">Select Is Offered...</option>
@@ -54,19 +54,19 @@
                             </select>
                         </div>
                         <div class="mb-10">
-                            <label class="form-label fs-6 fw-semibold">created at from</label>
+                            <label class="form-label fs-6 fw-semibold">{{ t('table.created_at_from') }}</label>
                             <input v-model="filter.start_date" type="date" name="start_date" id="created_at_from"
                                 class="form-control mb-2" placeholder="Organization created at">
                         </div>
                         <div class="mb-10">
-                            <label class="form-label fs-6 fw-semibold">created at to</label>
+                            <label class="form-label fs-6 fw-semibold">{{ t('table.created_at_to') }}</label>
                             <input v-model="filter.end_date" type="date" name="end_date" id="created_at_to"
                                 class="form-control mb-2" placeholder="Organization created at">
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="button" class="btn btn-light btn-active-light-primary fw-semibold me-2 px-6"
-                                data-bs-dismiss="dropdown" @click="resetFilter">Reset</button>
-                            <button type="submit" class="btn btn-primary fw-semibold px-6">Apply</button>
+                                data-bs-dismiss="dropdown" @click="resetFilter">{{ t('table.reset') }}</button>
+                            <button type="submit" class="btn btn-primary fw-semibold px-6">{{ t('table.apply') }}</button>
                         </div>
                     </li>
                 </ul>
@@ -77,6 +77,9 @@
 <script setup>
 import { reactive, ref, watch } from 'vue';
 import api from '@/services/api'
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n()
 
 const filter = reactive({
     id: '',

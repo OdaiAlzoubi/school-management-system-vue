@@ -1,0 +1,17 @@
+{
+    "add": "إضافة مادة دراسية",
+    "edit": "تعديل المادة الدراسية",
+    "name": "الاسم",
+    "code": "الكود",
+    "description": "الوصف",
+    "grade": "الصف الدراسي",
+    "type": "النوع",
+    "min_passing_score": "الدرجة الأدنى للنجاح",
+    "credit_hours": "ساعات الدراسة",
+    "theory_hours": "ساعات العمليات",
+    "practice_hours": "ساعات العمليات",
+    "assessment_weights": "تفسيم العلامات",
+    "is_active": "هل تم تفعيلها؟",
+    "is_offered": "هل هي فعالة هذه السنة؟",
+    "prerequisite_required": "هل تم تقديمها؟"
+}

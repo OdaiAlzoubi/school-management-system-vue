@@ -119,7 +119,7 @@
                         </div>
                         <!-- {{-- Product Management --}} -->
                         <div class="menu-item pt-5">
-                            <div class="menu-content">
+                            <div class="menu-content text-light">
                                 <span class="menu-heading fw-bold text-uppercase fs-7">{{ t('menu.school_management') }}</span>
                             </div>
                         </div>

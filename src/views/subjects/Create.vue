@@ -2,17 +2,17 @@
     <Modal :modelValue="modelValue" @update:modelValue="$emit('update:modelValue', $event)">
         <form @submit.prevent="handleSubmit">
             <div class="mb-13 text-center">
-                <h1 class="mb-3">{{ isEdit ? 'Edit Subject' : 'Add Subject' }}</h1>
+                <h1 class="mb-3">{{ isEdit ? t('subject.edit') : t('subject.add') }}</h1>
                 <div class="text-muted fw-semibold fs-5">Fill all required fields</div>
             </div>
             <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">Name</label>
+                <label class="required fs-6 fw-semibold mb-2">{{ t('subject.name') }}</label>
                 <input v-model="form.name" type="text" class="form-control form-control-solid"
                     :class="{ 'is-invalid': errors.name }" placeholder="Enter Name">
                 <Error v-if="errors.name" :message="getErrorMessage(errors.name)" />
             </div>
             <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">Grade</label>
+                <label class="required fs-6 fw-semibold mb-2">{{ t('subject.grade') }}</label>
                 <select v-model="form.grade_id" name="grade_id"
                     class="form-select form-select-solid form-select-lg fw-semibold"
                     :class="{ 'is-invalid': errors.grade_id }">
@@ -23,25 +23,25 @@
                 <Error v-if="errors.grade_id" :message="getErrorMessage(errors.grade_id)" />
             </div>
             <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">Code</label>
+                <label class="required fs-6 fw-semibold mb-2">{{ t('subject.code') }}</label>
                 <input v-model="form.code" type="text" class="form-control form-control-solid"
                     :class="{ 'is-invalid': errors.code }" placeholder="Enter Code">
                 <Error v-if="errors.code" :message="getErrorMessage(errors.code)" />
             </div>
             <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">Min Passing Score</label>
+                <label class="required fs-6 fw-semibold mb-2">{{ t('subject.min_passing_score') }}</label>
                 <input v-model="form.min_passing_score" type="number" class="form-control form-control-solid" min="0"
                     max="100" :class="{ 'is-invalid': errors.min_passing_score }" placeholder="Enter Min Passing Score">
                 <Error v-if="errors.min_passing_score" :message="getErrorMessage(errors.min_passing_score)" />
             </div>
             <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">Description</label>
+                <label class="required fs-6 fw-semibold mb-2">{{ t('subject.description') }}</label>
                 <input v-model="form.description" type="text" class="form-control form-control-solid"
                     :class="{ 'is-invalid': errors.description }" placeholder="Enter Description">
                 <Error v-if="errors.description" :message="getErrorMessage(errors.description)" />
             </div>
             <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">Type</label>
+                <label class="required fs-6 fw-semibold mb-2">{{ t('subject.type') }}</label>
                 <select v-model="form.type" name="type" class="form-select form-select-solid form-select-lg fw-semibold"
                     :class="{ 'is-invalid': errors.type }">
                     <option disabled value="">Select Is Type...</option>
@@ -50,7 +50,7 @@
                 <Error v-if="errors.type" :message="getErrorMessage(errors.type)" />
             </div>
             <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">Is Active</label>
+                <label class="required fs-6 fw-semibold mb-2">{{ t('subject.is_active') }}</label>
                 <select v-model="form.is_active" name="is_active"
                     class="form-select form-select-solid form-select-lg fw-semibold" data-control="select2"
                     :class="{ 'is-invalid': errors.is_active }">
@@ -61,7 +61,7 @@
                 <Error v-if="errors.is_active" :message="getErrorMessage(errors.is_active)" />
             </div>
             <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">Is Offered</label>
+                <label class="required fs-6 fw-semibold mb-2">{{ t('subject.is_offered') }}</label>
                 <select v-model="form.is_offered" name="is_offered"
                     class="form-select form-select-solid form-select-lg fw-semibold" data-control="select2"
                     :class="{ 'is-invalid': errors.is_offered }">
@@ -73,9 +73,9 @@
             </div>
             <!-- Actions -->
             <div class="text-center">
-                <button type="button" class="btn btn-light me-3" @click="close">Cancel</button>
-                <button type="submit" class="btn btn-primary">{{ isEdit ? 'Update' : 'Submit'
-                    }}</button>
+                <button type="button" class="btn btn-light me-3" @click="close">{{ t('form.cancel') }}</button>
+                <button type="submit" class="btn btn-primary">{{ isEdit ? t('form.update') : t('form.submit')
+                }}</button>
             </div>
         </form>
     </Modal>
@@ -86,6 +86,9 @@ import { reactive, watch, ref } from 'vue'
 import Modal from '@/components/modal/Modal'
 import Error from '@/components/common/Error'
 import api from '@/services/api'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps({
     modelValue: Boolean,

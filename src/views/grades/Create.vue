@@ -2,29 +2,29 @@
     <Modal :modelValue="modelValue" @update:modelValue="$emit('update:modelValue', $event)">
         <form @submit.prevent="handleSubmit">
             <div class="mb-13 text-center">
-                <h1 class="mb-3">{{ isEdit ? 'Edit Grade' : 'Add Grade' }}</h1>
+                <h1 class="mb-3">{{ isEdit ? t('grade.edit') : t('grade.add') }}</h1>
                 <div class="text-muted fw-semibold fs-5">Fill all required fields</div>
             </div>
             <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">Name</label>
+                <label class="required fs-6 fw-semibold mb-2">{{ t('grade.name') }}</label>
                 <input v-model="form.name" type="text" class="form-control form-control-solid"
                     :class="{ 'is-invalid': errors.name }" placeholder="Enter Name">
                 <Error v-if="errors.name" :message="getErrorMessage(errors.name)" />
             </div>
             <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">Code</label>
+                <label class="required fs-6 fw-semibold mb-2">{{ t('grade.code') }}</label>
                 <input v-model="form.code" type="text" class="form-control form-control-solid"
                     :class="{ 'is-invalid': errors.code }" placeholder="Enter Code">
                 <Error v-if="errors.code" :message="getErrorMessage(errors.code)" />
             </div>
             <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">Order</label>
+                <label class="required fs-6 fw-semibold mb-2">{{ t('grade.order') }}</label>
                 <input v-model="form.order" type="text" class="form-control form-control-solid"
                     :class="{ 'is-invalid': errors.order }" placeholder="Enter Order">
                 <Error v-if="errors.order" :message="getErrorMessage(errors.order)" />
             </div>
             <div class="d-flex flex-column mb-8">
-                <label class="required fs-6 fw-semibold mb-2">Description</label>
+                <label class="required fs-6 fw-semibold mb-2">{{ t('grade.description') }}</label>
                 <input v-model="form.description" type="text" class="form-control form-control-solid"
                     :class="{ 'is-invalid': errors.description }" placeholder="Enter Description">
                 <Error v-if="errors.description" :message="getErrorMessage(errors.description)" />
@@ -33,28 +33,28 @@
             <div class="card">
                 <div class="row g-9 mb-8 card-body" v-for="(section, index) in form.sections" :key="index">
                     <div class="d-flex col-md-4 flex-column mb-8">
-                        <label class="required fs-6 fw-semibold mb-2">Name</label>
+                        <label class="required fs-6 fw-semibold mb-2">{{ t('section.name') }}</label>
                         <input v-model="section.name" type="text" class="form-control form-control-solid"
                             :class="{ 'is-invalid': errors[`sections.${index}.name`] }" placeholder="Enter Name">
                         <Error v-if="errors[`sections.${index}.name`]"
                             :message="getErrorMessage(errors[`sections.${index}.name`])" />
                     </div>
                     <div class="d-flex col-md-4 flex-column mb-8">
-                        <label class="required fs-6 fw-semibold mb-2">capacity</label>
+                        <label class="required fs-6 fw-semibold mb-2">{{ t('section.capacity') }}</label>
                         <input v-model="section.capacity" type="text" class="form-control form-control-solid"
                             :class="{ 'is-invalid': errors[`sections.${index}.capacity`] }" placeholder="Enter Name">
                         <Error v-if="errors[`sections.${index}.capacity`]"
                             :message="getErrorMessage(errors[`sections.${index}.capacity`])" />
                     </div>
                     <div class="d-flex col-md-4 flex-column mb-8">
-                        <label class="required fs-6 fw-semibold mb-2">room</label>
+                        <label class="required fs-6 fw-semibold mb-2">{{ t('section.room') }}</label>
                         <input v-model="section.room" type="text" class="form-control form-control-solid"
                             :class="{ 'is-invalid': errors[`sections.${index}.room`] }" placeholder="Enter Name">
                         <Error v-if="errors[`sections.${index}.room`]"
                             :message="getErrorMessage(errors[`sections.${index}.room`])" />
                     </div>
                     <div class="d-flex col-md-4 flex-column mb-8">
-                        <label class="required fs-6 fw-semibold mb-2">shift</label>
+                        <label class="required fs-6 fw-semibold mb-2">{{ t('section.shift') }}</label>
                         <select class="form-select form-select-solid" v-model="section.shift"
                             :class="{ 'is-invalid': errors[`sections.${index}.shift`] }" data-control="select2"
                             data-hide-search="true" name="shift" required>
@@ -66,7 +66,7 @@
                             :message="getErrorMessage(errors[`sections.${index}.shift`])" />
                     </div>
                     <div class="d-flex col-md-4 flex-column mb-8">
-                        <label class="required fs-6 fw-semibold mb-2">is_active</label>
+                        <label class="required fs-6 fw-semibold mb-2">{{ t('section.is_active') }}</label>
                         <select class="form-select form-select-solid" v-model="section.is_active"
                             :class="{ 'is-invalid': errors[`sections.${index}.is_active`] }" data-control="select2"
                             data-hide-search="true" name="is_active" required>
@@ -89,14 +89,14 @@
             <!-- Add Section -->
             <div class="form-group mt-5">
                 <button type="button" class="btn btn-sm btn-light-primary" @click="addSection">
-                    <i class="ki-duotone ki-plus fs-2"></i>Add Section
+                    <i class="ki-duotone ki-plus fs-2"></i>{{ t('section.add') }}
                 </button>
             </div>
             <!-- test -->
             <!-- Actions -->
             <div class="text-center">
-                <button type="button" class="btn btn-light me-3" @click="close">Cancel</button>
-                <button type="submit" class="btn btn-primary">{{ isEdit ? 'Update' : 'Submit'
+                <button type="button" class="btn btn-light me-3" @click="close">{{ t('form.cancel') }}</button>
+                <button type="submit" class="btn btn-primary">{{ isEdit ? t('form.update') : t('form.submit')
                     }}</button>
             </div>
         </form>
@@ -108,7 +108,9 @@ import { reactive, watch, ref } from 'vue'
 import Modal from '@/components/modal/Modal'
 import Error from '@/components/common/Error'
 import api from '@/services/api'
+import {useI18n} from 'vue-i18n'
 
+const {t} = useI18n()
 const props = defineProps({
     modelValue: Boolean,
     isEdit: Boolean,
