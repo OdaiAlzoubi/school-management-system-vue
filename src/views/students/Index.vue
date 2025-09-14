@@ -90,11 +90,11 @@
                                         </div>
                                         <div v-if="route.name == 'student'" class="menu-item px-3">
                                             <a href="#" @click="deleteStudent(item.id)"
-                                                class="menu-link px-3">Delete</a>
+                                                class="menu-link px-3">{{ t('table.deleted') }}</a>
                                         </div>
                                         <div v-if="route.name == 'student.onlyTrashed'" class="menu-item px-3">
                                             <a href="#" @click="restoreStudent(item.id)"
-                                                class="menu-link px-3">Restore</a>
+                                                class="menu-link px-3">{{ t('table.restore') }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -165,36 +165,82 @@ const successMessage = ref(null)
 const errorMessage = ref(null)
 
 const deleteStudent = async (studentId) => {
-    if (confirm('Are you sure you want to delete this student?')) {
-        try {
-            const response = await api.delete(`student/delete/${studentId}`)
-            showAlert(response.data.message, 'success')
-            await fetchStudents()
-        } catch (error) {
-            console.error('Error deleting student:', error)
-            if (error.response && error.response.data && error.response.data.message) {
-                showAlert(error.response.data.message, 'error')
-            } else {
-                showAlert('An error occurred while deleting the student', 'error')
+    try {
+        Swal.fire({
+            title: t('swal.are_you_sure'),
+            text: t('swal.you_wont_be_able_to_revert_this'),
+            icon: "warning",
+            showCancelButton: true,
+            cancelButtonText: t('swal.cancel'),
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: t('swal.yes_delete_it')
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: t('swal.deleting'),
+                    text: t('swal.please_wait_while_we_delete_the_student'),
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    didOpen: () => {
+                        Swal.showLoading()
+                    }
+                })
+                const response = await api.delete(`student/delete/${studentId}`)
+                Swal.fire({
+                    title: t('swal.deleted'),
+                    text: response.data.message,
+                    icon: "success"
+                });
+                await fetchStudents()
             }
-        }
+        })
+    } catch (error) {
+        Swal.fire({
+            icon: "error",
+            title: error,
+            text: t('swal.failed_to_delete'),
+        });
     }
 }
 
 const restoreStudent = async (studentID) => {
-    if (confirm('Are you sure you want to restore this student?')) {
-        try {
-            const response = await api.put(`student/restore/${studentID}`)
-            showAlert(response.data.message, 'success')
-            await fetchStudents()
-        } catch (error) {
-            console.error('Error restoring student:', error)
-            if (error.response && error.response.data && error.response.data.message) {
-                showAlert(error.response.data.message, 'error')
-            } else {
-                showAlert('An error occurred while restoring the student', 'error')
+    try {
+        Swal.fire({
+            title: t('swal.are_you_sure'),
+            text: t('swal.you_wont_be_able_to_revert_this'),
+            icon: "warning",
+            showCancelButton: true,
+            cancelButtonText: t('swal.cancel'),
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: t('swal.yes_restore_it')
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: t('swal.restoring'),
+                    text: t('swal.please_wait_while_we_restore_the_student'),
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    didOpen: () => {
+                        Swal.showLoading()
+                    }
+                })
+                const response = await api.put(`student/restore/${studentID}`)
+                Swal.fire({
+                    title: t('swal.restored'),
+                    text: response.data.message,
+                    icon: "success"
+                });
+                await fetchStudents()
             }
-        }
+        })
+    } catch (error) {
+        Swal.fire({
+            icon: "error",
+            title: error,
+            text: t('swal.failed_to_restore'),
+        });
     }
 }
 

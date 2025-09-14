@@ -1,7 +1,8 @@
 {
   "add": "اضافة",
   "edit": "تعديل",
-  "delete": "حذف",
+  "restore": "استرجاع",
+  "deleted": "حذف",
   "filter": "فلتر",
   "actions": "الإجراءات",
   "created_at_from": "تم إنشاؤها من",

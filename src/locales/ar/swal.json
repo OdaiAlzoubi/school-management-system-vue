@@ -1,0 +1,15 @@
+{
+  "are_you_sure": "هل انت متأكد؟",
+  "you_wont_be_able_to_revert_this": "لن تتمكن من العودة!",
+  "yes_delete_it": "نعم، احذفها!",
+  "deleting": "جاري الحذف...",
+  "deleted": "تم الحذف",
+  "failed_to_delete": "فشل في حذف .",
+  "please_wait_while_we_delete_the_student": "يرجى الانتظار بينما نحذف الطالب.",
+  "restored": "تم الاسترجاع",
+  "please_wait_while_we_restore_the_student": "يرجى الانتظار بينما نسترجع الطالب.",
+  "cancel": "الغاء",
+  "yes_restore_it": "نعم، استرجعها!",
+  "restoring": "جاري الاسترجاع...",
+  "failed_to_restore": "فشل في استرجاع ."
+}
