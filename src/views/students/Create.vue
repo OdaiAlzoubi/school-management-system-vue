@@ -100,8 +100,8 @@
                         :class="{ 'is-invalid': errors.is_active }" data-control="select2" data-hide-search="true"
                         name="is_active" required>
                         <option disabled value="">Select Is Active...</option>
-                        <option value="1">Active</option>
-                        <option value="0">InActive</option>
+                        <option v-for="status in isActiveOptions" :key="status.value" :value="status.value">{{
+                            status.label }}</option>
                     </select>
                     <Error v-if="errors.is_active" :message="getErrorMessage(errors.is_active)" />
                 </div>
@@ -112,8 +112,8 @@
                         :class="{ 'is-invalid': errors.gender }" data-control="select2" data-hide-search="true"
                         name="gender" required>
                         <option disabled value="">Select Is Gender...</option>
-                        <option value="male">male</option>
-                        <option value="female">female</option>
+                        <option v-for="gender in genderOptions" :key="gender.value" :value="gender.value">{{
+                            gender.label }}</option>
                     </select>
                     <Error v-if="errors.gender" :message="getErrorMessage(errors.gender)" />
                 </div>
@@ -124,9 +124,8 @@
                         :class="{ 'is-invalid': errors.enrollment_status }" data-control="select2"
                         data-hide-search="true" name="enrollment_status" required>
                         <option disabled value="">Select Is Enrollment Status...</option>
-                        <option value="active">Active</option>
-                        <option value="completed">Completed</option>
-                        <option value="withdrawn">Withdrawn</option>
+                        <option v-for="status in enrollmentStatusOptions" :key="status.value" :value="status.value">{{
+                            status.label }}</option>
                     </select>
                     <Error v-if="errors.enrollment_status" :message="getErrorMessage(errors.enrollment_status)" />
                 </div>
@@ -142,9 +141,10 @@
 </template>
 
 <script setup>
-import { reactive, watch } from 'vue'
+import { reactive, watch, ref } from 'vue'
 import Modal from '@/components/modal/Modal'
 import Error from '@/components/common/Error'
+import api from '@/services/api'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -245,6 +245,41 @@ const close = () => {
     restForm()
     // errors.value = {}
 }
+
+// Load Enum
+const createEnumLoader = (optionsRef, loadedRef, url) => {
+    return async () => {
+        try {
+            if (!loadedRef.value) {
+                const { data } = await api.get(url)
+                optionsRef.value = data.data
+                loadedRef.value = true
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+}
+// Load enrollment_status
+const enrollmentStatusOptions = ref([])
+const enrollmentStatusLoaded = ref(false)
+const loadEnrollmentStatus = createEnumLoader(enrollmentStatusOptions, enrollmentStatusLoaded, '/enums/enrollment-status')
+// Load Gender
+const genderOptions = ref([])
+const genderLoaded = ref(false)
+const loadGender = createEnumLoader(genderOptions, genderLoaded, '/enums/gender')
+// Load Is Active
+const isActiveOptions = ref([])
+const isActiveLoaded = ref(false)
+const loadIsActive = createEnumLoader(isActiveOptions, isActiveLoaded, '/enums/is-active')
+
+watch(() => props.modelValue, (val) => {
+    if (val) {
+        loadEnrollmentStatus()
+        loadGender()
+        loadIsActive()
+    }
+})
 </script>
 
 <style scoped>
