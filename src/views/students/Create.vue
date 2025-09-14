@@ -2,7 +2,7 @@
     <Modal :modelValue="modelValue" @update:modelValue="$emit('update:modelValue', $event)">
         <form @submit.prevent="handleSubmit">
             <div class="mb-13 text-center">
-                <h1 class="mb-3">{{ isEdit ? 'Edit Student' : 'Add Student' }}</h1>
+                <h1 class="mb-3">{{ isEdit ? t('student.edit') : t('student.add') }} </h1>
                 <div class="text-muted fw-semibold fs-5">Fill all required fields</div>
             </div>
             <!-- Name -->
@@ -134,7 +134,7 @@
             <div class="text-center">
                 <button type="button" class="btn btn-light me-3" @click="close">{{ t('form.cancel') }}</button>
                 <button type="submit" class="btn btn-primary">{{ isEdit ? t('form.update') : t('form.submit')
-                    }}</button>
+                }}</button>
             </div>
         </form>
     </Modal>

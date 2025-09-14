@@ -1,4 +1,8 @@
 {
+  "add": "اضافة طالب",
+  "onlyTrashed": "طلاب محذوفين",
+  "edit": "تعديل الطالب",
+  "students_active": "الطلاب الفعالين",
   "name": "الاسم",
   "student": "طالب",
   "students": "طلاب",
@@ -13,7 +17,6 @@
   "country": "الدولة",
   "city": "المدينة",
   "street": "الشارع",
-  "trashed": "محذوفين",
   "first_name": "الاسم الأول",
   "middle_name": "الاسم الأوسط",
   "last_name": "الاسم الأخير"

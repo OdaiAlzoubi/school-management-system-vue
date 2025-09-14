@@ -5,18 +5,16 @@
             <div class="card-header align-items-center py-5 gap-2 gap-md-5">
                 <div class="card-title">
                     <div class="d-flex align-items-center position-relative my-1">
-                        <h1>{{ t('student.students') }}</h1>
+                        <h1>{{ t('menu.students') }}</h1>
                     </div>
                 </div>
                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                     <!--begin::Add product-->
-                    <button @click="openAddModal" class="btn btn-primary">{{ t('table.add') }} {{
-                        t('student.student') }}</button>
+                    <button @click="openAddModal" class="btn btn-primary">{{ t('student.add') }}</button>
                     <router-link v-if="route.name == 'student'" :to="{ name: 'student.onlyTrashed' }"
-                        class="btn btn-primary">{{ t('student.students') }} {{ t('student.trashed')
-                        }}</router-link>
+                        class="btn btn-primary">{{ t('student.onlyTrashed') }}</router-link>
                     <router-link v-if="route.name == 'student.onlyTrashed'" :to="{ name: 'student' }"
-                        class="btn btn-primary">{{ t('student.students') }} Active</router-link>
+                        class="btn btn-primary">{{ t('student.students_active') }}</router-link>
                     <Filter @submit="fetchStudents" />
                 </div>
             </div>

@@ -2,8 +2,8 @@
   "dashboard": "لوحة التحكم",
   "school_management": "إدارة المدرسة",
   "students": "الطلاب",
-  "grades": "المراحل",
-  "subjects": "المواد",
+  "grades": "الصفوف الدراسية",
+  "subjects": "المواد الدراسية",
   "teachers": "المعلمون",
-  "guardian": "الاولياء"
+  "guardian": "اولياء الامور"
 }
