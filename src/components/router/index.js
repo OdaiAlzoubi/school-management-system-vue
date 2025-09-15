@@ -5,6 +5,7 @@ import authRoutes from "./routes/auth";
 import guardianRoutes from "./routes/guardian";
 import gradesRoutes from "./routes/grades";
 import subjectsRoutes from "./routes/subjects";
+import academicYearRoutes from "./routes/academicYear";
 
 const routes = [
   ...dashboardRoutes,
@@ -13,6 +14,7 @@ const routes = [
   ...guardianRoutes,
   ...gradesRoutes,
   ...subjectsRoutes,
+  ...academicYearRoutes,
 ];
 
 const router = createRouter({

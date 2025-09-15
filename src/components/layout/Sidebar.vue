@@ -120,13 +120,14 @@
                         <!-- {{-- Product Management --}} -->
                         <div class="menu-item pt-5">
                             <div class="menu-content text-light">
-                                <span class="menu-heading fw-bold text-uppercase fs-7">{{ t('menu.school_management') }}</span>
+                                <span class="menu-heading fw-bold text-uppercase fs-7">{{ t('menu.school_management')
+                                    }}</span>
                             </div>
                         </div>
                         <div class="menu-item menu-accordion" :class="isActiveRoute('student') ? 'show' : ''">
                             <router-link :to="{ name: 'student' }" class="menu-link">
                                 <span class="menu-icon">
-                                    <i class="ki-duotone ki-chart fs-2">
+                                    <i class="fa-solid fa-users">
                                         <span class="path1"></span>
                                         <span class="path2"></span>
                                     </i>
@@ -167,6 +168,24 @@
                                 <span class="menu-title">{{ t('menu.subjects') }}</span>
                             </router-link>
                         </div>
+                        <!--  -->
+                        <div class="menu-item pt-5">
+                            <div class="menu-content text-light">
+                                <span class="menu-heading fw-bold text-uppercase fs-7">{{ t('menu.academic_management')
+                                    }}</span>
+                            </div>
+                        </div>
+                        <div class="menu-item menu-accordion" :class="isActiveRoute('academic-year') ? 'show' : ''">
+                            <router-link :to="{ name: 'academic_year' }" class="menu-link">
+                                <span class="menu-icon">
+                                    <i class="ki-duotone ki-chart fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                </span>
+                                <span class="menu-title">{{ t('menu.academic_year') }}</span>
+                            </router-link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -177,7 +196,7 @@
 import { useRoute } from 'vue-router'
 import { useI18n } from "vue-i18n";
 const route = useRoute()
-const {t} = useI18n();
+const { t } = useI18n();
 
 const isActiveRoute = (prefix) => {
     return route.name?.toString().startsWith(prefix)

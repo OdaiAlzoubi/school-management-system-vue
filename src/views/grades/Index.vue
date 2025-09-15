@@ -126,7 +126,7 @@ const handleSave = async (fromData) => {
 
 const thead = ref([
     t('grade.name'), t('grade.sections_count')
-])
+]);
 const tbody = ref([])
 const fetchTable = async (e) => {
     try {

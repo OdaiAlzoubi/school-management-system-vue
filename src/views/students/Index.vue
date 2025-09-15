@@ -179,7 +179,7 @@ const deleteStudent = async (studentId) => {
             if (result.isConfirmed) {
                 Swal.fire({
                     title: t('swal.deleting'),
-                    text: t('swal.please_wait_while_we_delete_the_student'),
+                    text: t('swal.please_wait_while_we_delete'),
                     allowOutsideClick: false,
                     allowEscapeKey: false,
                     didOpen: () => {
@@ -219,7 +219,7 @@ const restoreStudent = async (studentID) => {
             if (result.isConfirmed) {
                 Swal.fire({
                     title: t('swal.restoring'),
-                    text: t('swal.please_wait_while_we_restore_the_student'),
+                    text: t('swal.please_wait_while_we_restore'),
                     allowOutsideClick: false,
                     allowEscapeKey: false,
                     didOpen: () => {

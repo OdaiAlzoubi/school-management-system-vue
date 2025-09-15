@@ -5,5 +5,7 @@
   "grades": "الصفوف الدراسية",
   "subjects": "المواد الدراسية",
   "teachers": "المعلمون",
-  "guardian": "اولياء الامور"
+  "guardian": "اولياء الامور",
+  "academic_management": "إدارة الاكاديمية",
+  "academic_year": "السنة الاكاديمية"
 }
