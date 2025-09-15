@@ -17,18 +17,18 @@
                     <thead>
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                             <th class=" min-w-100px">id</th>
-                            <th v-for="n in thead" class=" min-w-100px">{{ n }}</th>
+                            <th v-for="n in thead" class=" min-w-100px text-center">{{ n }}</th>
                             <th class="text-end min-w-100px">{{ t('table.actions') }}</th>
                         </tr>
                     </thead>
                 </template>
                 <template #tbody>
-                    <tbody class="fw-semibold text-gray-600">
+                    <tbody class="fw-semibold text-gray-600 text-capitalize">
                         <tr v-for="(item, index) in tbody" :key="index">
                             <td class="">
                                 <span class="fw-bold">{{ item.id }}</span>
                             </td>
-                            <td class="">
+                            <td class="text-center">
                                 <span class="fw-bold">{{ item.name }}</span>
                             </td>
                             <td class="text-center">
