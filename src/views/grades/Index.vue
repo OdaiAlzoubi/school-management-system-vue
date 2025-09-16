@@ -2,14 +2,11 @@
     <Index>
         <template #content>
             <div class="card-header align-items-center py-5 gap-2 gap-md-5">
-                <!--begin::Card title-->
                 <div class="card-title">
                     <h1>{{ t('menu.grades') }}</h1>
                 </div>
-                <!--begin::Card toolbar-->
                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                     <button @click="openAddModal" class="btn btn-primary">{{ t('grade.add') }}</button>
-                    <!-- <Filter @submit="fetchTable" /> -->
                 </div>
             </div>
             <Table>
@@ -32,7 +29,9 @@
                                 <span class="fw-bold">{{ item.name }}</span>
                             </td>
                             <td class="text-center">
-                                <span class="fw-bold">{{ item.sections_count }}</span>
+                                <router-link :to="{ name: 'grades.show', params: { id: item.id } }" class="fw-bold">{{
+                                    item.sections_count
+                                    }}</router-link>
                             </td>
                             <td class="text-end">
                                 <div class="dropdown">
@@ -48,13 +47,6 @@
                                             <a href="#" @click="openEditModal(item)" class="menu-link px-3">{{
                                                 t('table.edit') }}</a>
                                         </div>
-                                        <div v-if="route.name == 'grade'" class="menu-item px-3">
-                                            <a href="#" @click="deletegrade(item.id)" class="menu-link px-3">Delete</a>
-                                        </div>
-                                        <div v-if="route.name == 'grade.onlyTrashed'" class="menu-item px-3">
-                                            <a href="#" @click="restoregrade(item.id)"
-                                                class="menu-link px-3">Restore</a>
-                                        </div>
                                     </div>
                                 </div>
                             </td>
@@ -66,6 +58,7 @@
         <template #modal>
             <Create v-model="showModal" :isEdit="isEdit" :fromData="selectedItem" @submit="handleSave"
                 :errors="validationErrors" />
+            <!-- <Show v-model="showShowModal" :itemShow="itemShow"/> -->
         </template>
     </Index>
 </template>
@@ -73,8 +66,9 @@
 <script setup>
 import Index from '@/components/pages/Index'
 import Table from '@/components/table/Table'
-import api from '@/services/api'
 import Create from '@/views/grades/Create';
+// import Show from '@/views/grades/Show';
+import api from '@/services/api'
 import { useI18n } from 'vue-i18n'
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router'
@@ -82,6 +76,13 @@ import { useRoute } from 'vue-router'
 const { t } = useI18n()
 const route = useRoute()
 
+// Show
+const showShowModal = ref(false)
+const itemShow = ref(null)
+const openShowModal = (item) => {
+    itemShow.value = item;
+    showShowModal.value = true;
+}
 // Modal
 const showModal = ref(false)
 const isEdit = ref(false)

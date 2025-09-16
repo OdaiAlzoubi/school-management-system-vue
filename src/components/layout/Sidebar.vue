@@ -135,17 +135,6 @@
                                 <span class="menu-title">{{ t('menu.students') }}</span>
                             </router-link>
                         </div>
-                        <div class="menu-item menu-accordion" :class="isActiveRoute('grades') ? 'show' : ''">
-                            <router-link :to="{ name: 'grades' }" class="menu-link">
-                                <span class="menu-icon">
-                                    <i class="ki-duotone ki-chart fs-2">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                    </i>
-                                </span>
-                                <span class="menu-title">{{ t('menu.grades') }}</span>
-                            </router-link>
-                        </div>
                         <div class="menu-item menu-accordion" :class="isActiveRoute('guardian') ? 'show' : ''">
                             <router-link :to="{ name: 'guardian' }" class="menu-link">
                                 <span class="menu-icon">
@@ -155,17 +144,6 @@
                                     </i>
                                 </span>
                                 <span class="menu-title">{{ t('menu.guardian') }}</span>
-                            </router-link>
-                        </div>
-                        <div class="menu-item menu-accordion" :class="isActiveRoute('subjects') ? 'show' : ''">
-                            <router-link :to="{ name: 'subjects' }" class="menu-link">
-                                <span class="menu-icon">
-                                    <i class="ki-duotone ki-chart fs-2">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                    </i>
-                                </span>
-                                <span class="menu-title">{{ t('menu.subjects') }}</span>
                             </router-link>
                         </div>
                         <!--  -->
@@ -184,6 +162,28 @@
                                     </i>
                                 </span>
                                 <span class="menu-title">{{ t('menu.academic_year') }}</span>
+                            </router-link>
+                        </div>
+                        <div class="menu-item menu-accordion" :class="isActiveRoute('grades') ? 'show' : ''">
+                            <router-link :to="{ name: 'grades' }" class="menu-link">
+                                <span class="menu-icon">
+                                    <i class="ki-duotone ki-chart fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                </span>
+                                <span class="menu-title">{{ t('menu.grades') }}</span>
+                            </router-link>
+                        </div>
+                        <div class="menu-item menu-accordion" :class="isActiveRoute('subjects') ? 'show' : ''">
+                            <router-link :to="{ name: 'subjects' }" class="menu-link">
+                                <span class="menu-icon">
+                                    <i class="ki-duotone ki-chart fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                </span>
+                                <span class="menu-title">{{ t('menu.subjects') }}</span>
                             </router-link>
                         </div>
                     </div>

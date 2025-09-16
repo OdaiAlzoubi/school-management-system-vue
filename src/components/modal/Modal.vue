@@ -24,8 +24,6 @@
 <script setup>
 const props = defineProps({
     modelValue: Boolean,
-    isEdit: Boolean,
-    studentData: Object,
 })
 
 const emit = defineEmits(['update:modelValue', 'submit'])
