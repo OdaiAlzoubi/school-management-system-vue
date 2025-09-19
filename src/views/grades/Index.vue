@@ -26,12 +26,12 @@
                                 <span class="fw-bold">{{ item.id }}</span>
                             </td>
                             <td class="text-center">
-                                <span class="fw-bold">{{ item.name }}</span>
+                                <router-link :to="{ name: 'grades.show', params: { id: item.id } }" class="fw-bold">{{
+                                    item.name
+                                    }}</router-link>
                             </td>
                             <td class="text-center">
-                                <router-link :to="{ name: 'grades.show', params: { id: item.id } }" class="fw-bold">{{
-                                    item.sections_count
-                                    }}</router-link>
+                                <span class="fw-bold">{{ item.sections_count }}</span>
                             </td>
                             <td class="text-end">
                                 <div class="dropdown">
@@ -58,7 +58,6 @@
         <template #modal>
             <Create v-model="showModal" :isEdit="isEdit" :fromData="selectedItem" @submit="handleSave"
                 :errors="validationErrors" />
-            <!-- <Show v-model="showShowModal" :itemShow="itemShow"/> -->
         </template>
     </Index>
 </template>
@@ -67,7 +66,6 @@
 import Index from '@/components/pages/Index'
 import Table from '@/components/table/Table'
 import Create from '@/views/grades/Create';
-// import Show from '@/views/grades/Show';
 import api from '@/services/api'
 import { useI18n } from 'vue-i18n'
 import { ref, watch } from 'vue';
@@ -76,13 +74,6 @@ import { useRoute } from 'vue-router'
 const { t } = useI18n()
 const route = useRoute()
 
-// Show
-const showShowModal = ref(false)
-const itemShow = ref(null)
-const openShowModal = (item) => {
-    itemShow.value = item;
-    showShowModal.value = true;
-}
 // Modal
 const showModal = ref(false)
 const isEdit = ref(false)

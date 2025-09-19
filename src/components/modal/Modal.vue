@@ -1,6 +1,6 @@
 <!-- components/Modal.vue -->
 <template>
-    <div class="modal fade" tabindex="-1" :class="{ show: modelValue }" style="display: block;" v-if="modelValue">
+    <div class="modal fade" tabindex="-1" :class="{ show: modelValue }" style="display: block;" v-if="modelValue" @click.self="close">
         <div class="modal-dialog modal-dialog-centered mw-950px">
             <div class="modal-content rounded">
                 <!-- Modal Header -->

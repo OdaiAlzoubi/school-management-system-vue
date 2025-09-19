@@ -29,7 +29,8 @@
                                             profile.description }}</div>
                                     </div>
                                     <div class="d-flex mb-4">
-                                        <a href="#" class="btn btn-sm btn-primary me-3" data-bs-toggle="modal">Add
+                                        <a href="#" @click.prevent="openAddFormSectionModal"
+                                            class="btn btn-sm btn-primary me-3">Add
                                             Section</a>
                                         <a href="#" class="btn btn-sm" @click.prevent="goBack">
                                             <i class="fa-solid fa-backward"></i>
@@ -78,7 +79,8 @@
                                     <div class="fs-6 fw-semibold text-gray-500">Count Students</div>
                                 </div>
                                 <div class="card-toolbar">
-                                    <a href="#" class="btn btn-light btn-sm">Edit</a>
+                                    <a href="#" @click="openEditFormSectionModal(section)"
+                                        class="btn btn-light btn-sm">{{ t('table.edit') }}</a>
                                 </div>
                             </div>
                             <!--begin::Card body-->
@@ -114,11 +116,17 @@
                 </div>
             </div>
         </template>
+        <template #modal>
+            <FormSection v-model="showFormSectionModal" :isEdit="isEditFormSectionModal"
+                :formData="selectedItemFormSectionModal" @submit="handleSaveSection"
+                :errors="validationErrorsSection" />
+        </template>
     </Index>
 </template>
 <script setup>
 import Index from '@/components/pages/Index'
 import api from '@/services/api'
+import FormSection from '@/views/sections/Form'
 import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
@@ -143,4 +151,40 @@ const getGrade = async () => {
     }
 }
 getGrade()
+// Form Section Modal
+const showFormSectionModal = ref(false)
+const isEditFormSectionModal = ref(false)
+const selectedItemFormSectionModal = ref(null)
+const validationErrorsSection = ref([])
+const openAddFormSectionModal = () => {
+    showFormSectionModal.value = true;
+    isEditFormSectionModal.value = false;
+    selectedItemFormSectionModal.value = { grade_id: profile.value.id }
+}
+const openEditFormSectionModal = (item) => {
+    isEditFormSectionModal.value = true
+    showFormSectionModal.value = true
+    selectedItemFormSectionModal.value = item
+}
+const handleSaveSection = async (formData) => {
+    try {
+        validationErrorsSection.value = []
+        let response;
+        if (isEditFormSectionModal.value) {
+            response = await api.put(`/section/update/${selectedItemFormSectionModal.value.id}`, formData)
+        } else {
+            response = await api.post('/section/create', formData)
+        }
+        Swal.fire({
+            icon: "success",
+            title: response.data.message,
+            showConfirmButton: false,
+            timer: 2500
+        });
+        showFormSectionModal.value = false;
+        getGrade()
+    } catch (error) {
+        validationErrorsSection.value = error.response.data.errors || {}
+    }
+}
 </script>
