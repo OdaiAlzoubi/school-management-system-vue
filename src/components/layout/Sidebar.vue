@@ -186,6 +186,17 @@
                                 <span class="menu-title">{{ t('menu.subjects') }}</span>
                             </router-link>
                         </div>
+                        <div class="menu-item menu-accordion" :class="isActiveRoute('enrollments') ? 'show' : ''">
+                            <router-link :to="{ name: 'enrollments' }" class="menu-link">
+                                <span class="menu-icon">
+                                    <i class="ki-duotone ki-chart fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                </span>
+                                <span class="menu-title">{{ t('menu.enrollments') }}</span>
+                            </router-link>
+                        </div>
                     </div>
                 </div>
             </div>

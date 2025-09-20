@@ -51,7 +51,7 @@
             <div class="text-center">
                 <button type="button" class="btn btn-light me-3" @click="close">{{ t('form.cancel') }}</button>
                 <button type="submit" class="btn btn-primary">{{ isEdit ? t('form.update') : t('form.submit')
-                    }}</button>
+                }}</button>
             </div>
         </form>
     </Modal>

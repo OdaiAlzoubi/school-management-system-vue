@@ -1,0 +1,12 @@
+{
+    "add": "إضافة تسجيل",
+    "edit": "تعديل التسجيل",
+    "student": "الطالب",
+    "section": "القسم",
+    "academic_year": "العام الدراسي",
+    "grade": "الصف",
+    "admission_date": "تاريخ الإنضمام",
+    "status": "الحالة",
+    "graduation_date": "تاريخ التخرج",
+    "reason": "السبب"
+}
